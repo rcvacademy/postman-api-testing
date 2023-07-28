@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "8c1fe371-1b79-492a-8c95-cb750f0c1d71",
+		"name": "1. API Test Jira Cloud Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23653040"
+	},
+	"item": [
+		{
+			"name": "End to End API Testing",
+			"item": [
+				{
+					"name": "Create issue Story in existing project",
+					"item": [
+						{
+							"name": "GetProjects",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"var projectDetails = response.values;\r",
+											"var desiredValues = projectDetails.map((value) => value.name);\r",
+											"pm.collectionVariables.set(\"projectID\", projectDetails[desiredValues.indexOf(\"Zoho CRM Sample Project\")].id);\r",
+											"pm.collectionVariables.set(\"projectKey\", projectDetails[desiredValues.indexOf(\"Zoho CRM Sample Project\")].key);\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{jiratoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/rest/api/3/project/search",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"rest",
+										"api",
+										"3",
+										"project",
+										"search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All issueTypes for project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"const desiredValues = response.map((value) => value.name);\r",
+											"pm.collectionVariables.set('issueID', response[desiredValues.indexOf(pm.variables.get(\"issueName\"))].id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "rcvacademylive@gmail.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{jiratoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/rest/api/3/issuetype/project?projectId={{projectID}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"rest",
+										"api",
+										"3",
+										"issuetype",
+										"project"
+									],
+									"query": [
+										{
+											"key": "projectId",
+											"value": "{{projectID}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Users assignable to project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"let desiredValues = response.map((value) => value.displayName);\r",
+											"pm.collectionVariables.set('accountID', response[desiredValues.indexOf('Rama K')].accountId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{jiratoken}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rcvacademylive@gmail.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/rest/api/3/user/assignable/multiProjectSearch?projectKeys={{projectKey}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"rest",
+										"api",
+										"3",
+										"user",
+										"assignable",
+										"multiProjectSearch"
+									],
+									"query": [
+										{
+											"key": "projectKeys",
+											"value": "{{projectKey}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create IssueType Story",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"pm.collectionVariables.set(\"createdIssueKey\", response.id)\r",
+											"\r",
+											"pm.test(\"Status code is 201 and a success\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"    pm.response.to.be.success;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// var title = pm.collectionVariables.replaceIn(\"{{$randomPhrase}}\");\r",
+											"pm.collectionVariables.set(\"issueTitle\", pm.variables.get(\"issueTitle\"));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{jiratoken}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rcvacademylive@gmail.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"id\": \"{{projectID}}\"\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{accountID}}\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"{{issueID}}\"\r\n        },\r\n        \"summary\": \"{{issueTitle}}\"\r\n    },\r\n    \"update\": {}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/rest/api/3/issue",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"rest",
+										"api",
+										"3",
+										"issue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Issue",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"console.log(response.fields.summary);\r",
+											"\r",
+											"pm.test(\"Summary match\", function () {   \r",
+											"    pm.expect(response.fields.summary).to.eql(pm.collectionVariables.get(\"issueTitle\"));\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{username}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{jiratoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/rest/api/3/issue/{{createdIssueKey}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"rest",
+										"api",
+										"3",
+										"issue",
+										"{{createdIssueKey}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "projectID",
+			"value": ""
+		},
+		{
+			"key": "projectKey",
+			"value": ""
+		},
+		{
+			"key": "issueID",
+			"value": ""
+		},
+		{
+			"key": "accountID",
+			"value": ""
+		},
+		{
+			"key": "issueTitle",
+			"value": ""
+		},
+		{
+			"key": "createdIssueKey",
+			"value": ""
+		},
+		{
+			"key": "issueName",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
