@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "8c1fe371-1b79-492a-8c95-cb750f0c1d71",
-		"name": "1. API Test Jira Cloud Copy",
+		"_postman_id": "6d8be0e3-06ed-4961-9508-f13876347fb2",
+		"name": "1. API Test Jira Cloud Copy 3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23653040"
 	},
@@ -25,6 +25,9 @@
 											"pm.collectionVariables.set(\"projectID\", projectDetails[desiredValues.indexOf(\"Zoho CRM Sample Project\")].id);\r",
 											"pm.collectionVariables.set(\"projectKey\", projectDetails[desiredValues.indexOf(\"Zoho CRM Sample Project\")].key);\r",
 											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
 											""
 										],
 										"type": "text/javascript"
@@ -190,7 +193,11 @@
 										"exec": [
 											"const response = pm.response.json();\r",
 											"let desiredValues = response.map((value) => value.displayName);\r",
-											"pm.collectionVariables.set('accountID', response[desiredValues.indexOf('Rama K')].accountId);"
+											"pm.collectionVariables.set('accountID', response[desiredValues.indexOf('Rama K')].accountId);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
 										],
 										"type": "text/javascript"
 									}
