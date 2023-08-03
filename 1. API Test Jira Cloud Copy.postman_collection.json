@@ -47,21 +47,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{jiratoken}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -129,21 +114,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{jiratoken}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -206,21 +176,6 @@
 								"disableBodyPruning": true
 							},
 							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{jiratoken}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -291,21 +246,6 @@
 								}
 							],
 							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{jiratoken}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "POST",
 								"header": [
 									{
@@ -357,21 +297,6 @@
 								}
 							],
 							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{username}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{jiratoken}}",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -395,6 +320,21 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{jiratoken}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
