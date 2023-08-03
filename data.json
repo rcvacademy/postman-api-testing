@@ -1,0 +1,14 @@
+[
+	{
+		"issueName": "Story",
+		"issueTitle": "Sample Story Title - This is Story"
+	},
+	{
+		"issueName": "Bug",
+		"issueTitle": "Sample Bug Title - This is Bug"
+	},
+	{
+		"issueName": "Task",
+		"issueTitle": "Sample Task Title - This is Task"
+	}
+]

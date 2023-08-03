@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "6d8be0e3-06ed-4961-9508-f13876347fb2",
-		"name": "1. API Test Jira Cloud Copy 3",
+		"_postman_id": "80833c16-090f-4518-baac-aa2e93c29476",
+		"name": "1. API Test Jira Cloud",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23653040"
 	},
@@ -110,8 +110,7 @@
 										"exec": [
 											"const response = pm.response.json();\r",
 											"const desiredValues = response.map((value) => value.name);\r",
-											"pm.collectionVariables.set('issueID', response[desiredValues.indexOf(pm.variables.get(\"issueName\"))].id);\r",
-											""
+											"pm.collectionVariables.set('issueID', response[desiredValues.indexOf(pm.variables.get(\"issueName\"))].id);"
 										],
 										"type": "text/javascript"
 									}
@@ -135,7 +134,7 @@
 									"basic": [
 										{
 											"key": "username",
-											"value": "rcvacademylive@gmail.com",
+											"value": "{{username}}",
 											"type": "string"
 										},
 										{
@@ -193,7 +192,7 @@
 										"exec": [
 											"const response = pm.response.json();\r",
 											"let desiredValues = response.map((value) => value.displayName);\r",
-											"pm.collectionVariables.set('accountID', response[desiredValues.indexOf('Rama K')].accountId);\r",
+											"pm.collectionVariables.set('accountID', response[desiredValues.indexOf('RCV Tutorials')].accountId);\r",
 											"\r",
 											"pm.test(\"Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
@@ -211,13 +210,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{jiratoken}}",
+											"key": "username",
+											"value": "{{username}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "rcvacademylive@gmail.com",
+											"key": "password",
+											"value": "{{jiratoken}}",
 											"type": "string"
 										}
 									]
@@ -296,13 +295,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{jiratoken}}",
+											"key": "username",
+											"value": "{{username}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "rcvacademylive@gmail.com",
+											"key": "password",
+											"value": "{{jiratoken}}",
 											"type": "string"
 										}
 									]
